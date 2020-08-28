@@ -63,11 +63,7 @@ class MainActivity : AppCompatActivity() {
                 }
             } )
     }
-    /*private fun word(){
-        when (currentPosition){
-            0 ->
-        }
-    }*/
+   
     private fun workwithData(data: CurrencyModel?) {
         val keys = data?.rates?.keySet()?.toList()  // итог arraylist из ключей
 
@@ -85,7 +81,7 @@ class MainActivity : AppCompatActivity() {
         spOne.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(p0: AdapterView<*>?) {}
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-               /* currentPosition = keys.posit*/
+               currentPosition = position
             } }
 
 
