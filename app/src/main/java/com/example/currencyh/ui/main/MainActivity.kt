@@ -16,12 +16,14 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
+   // private var currentPosition:Int = 0
     private var values = arrayListOf<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupListeners()
         setupNetwork()
+
     }
 
     private fun setupNetwork() {
@@ -39,7 +41,6 @@ class MainActivity : AppCompatActivity() {
     fun calculate(value: String){
         val result = value.toDouble() * values[spTwo.selectedItemPosition].toDouble()
         EditTwo.setText(result.toString())
-
     }
 
 
@@ -60,7 +61,6 @@ class MainActivity : AppCompatActivity() {
                     Log.e("Network",t.localizedMessage)
                 }
             } )
-
     }
     private fun workwithData(data: CurrencyModel?) {
         val keys = data?.rates?.keySet()?.toList()  // итог arraylist из ключей
@@ -76,7 +76,8 @@ class MainActivity : AppCompatActivity() {
 
         spOne.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(p0: AdapterView<*>?) {}
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+                //currentPosition = 1
             } }
 
 
