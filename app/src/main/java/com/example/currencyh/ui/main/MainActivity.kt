@@ -16,8 +16,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
-   // private var currentPosition:Int = 0
+    private var currentPosition:Int = 0
     private var values = arrayListOf<String>()
+    private var list = arrayListOf<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
     }
     fun calculate(value: String){
-        val result = value.toDouble() * values[spTwo.selectedItemPosition].toDouble()
+        val result = (values[spTwo.selectedItemPosition].toDouble() * value.toDouble()/list[spOne.selectedItemPosition].toDouble())
         EditTwo.setText(result.toString())
     }
 
@@ -62,12 +63,19 @@ class MainActivity : AppCompatActivity() {
                 }
             } )
     }
+    /*private fun word(){
+        when (currentPosition){
+            0 ->
+        }
+    }*/
     private fun workwithData(data: CurrencyModel?) {
         val keys = data?.rates?.keySet()?.toList()  // итог arraylist из ключей
 
         if (keys!= null){ // проверка на null для ошибки
             for (item in keys){
                 values.add(data.rates.get(item).toString()) // итог список из значений
+                list.add(data.rates.get(item).toString())
+
             }
         }
         val adapter = CurrencySpinnerAdapter(applicationContext, R.layout.item_spinner,keys!!)
@@ -77,7 +85,7 @@ class MainActivity : AppCompatActivity() {
         spOne.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(p0: AdapterView<*>?) {}
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                //currentPosition = 1
+               /* currentPosition = keys.posit*/
             } }
 
 
